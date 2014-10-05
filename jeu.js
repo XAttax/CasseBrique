@@ -25,6 +25,8 @@ $(document).ready(function() {
 	var triche = false;
 	
 	var pause = false;
+	
+	var briqueRest = 78;
 	/* */
 	
 	deg2rad = function(d) {
@@ -45,6 +47,7 @@ $(document).ready(function() {
 		
 		if(briques[briqueX] && briques[briqueX][briqueY] == 1) {
 			briques[briqueX][briqueY] = 0;
+			briqueRest--;
 		}
 	});
 	/* */
@@ -243,6 +246,7 @@ $(document).ready(function() {
 					if(briques[briqueX] && briques[briqueX][briqueY] == 1) {
 						balleAngle = rad2deg(Math.asin(-Math.sin(deg2rad(balleAngle))));
 						briques[briqueX][briqueY] = 0;
+						briqueRest--;
 					}
 				}
 			}
@@ -268,12 +272,17 @@ $(document).ready(function() {
 			// On affiche la balle
 			contexte.fillStyle = '#ffffff';
 			contexte.fillRect(balleX, balleY, 20, 20);
+			
+			// On affiche le score
+			contexte.font= "10px Arial";
+			contexte.fillStyle = '#ffffff';
+			contexte.fillText(briqueRest + ' / 78', positionRaquette+35, 573);
 		}
 		// En pause
 		else {
 			contexte.font= "60px Arial";
 			contexte.fillStyle = '#ffffff';
-			contexte.fillText('PAUSE', 300, 200);
+			contexte.fillText('C\'est la PAUSE FDP !', 10, 200);
 		}
 	}, 10);
 	
